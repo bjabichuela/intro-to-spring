@@ -16,5 +16,22 @@ public class User {
     @Column(nullable = false, length = 64)
     private String password;
 
-    // getters and setters are not shown
+    public User(){}
+
+    public User(String username, String password){
+        this.username = username;
+    }
+    public String getUsername() {
+        return username;
+    }
+    public String setUsername(String newUsername){
+        return this.username = username;
+    }
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword (String newPassword){
+        this.password = password;
+    }
 }
