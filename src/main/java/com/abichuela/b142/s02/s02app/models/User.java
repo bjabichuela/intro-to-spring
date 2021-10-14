@@ -48,4 +48,8 @@ public class User {
     public Set<Post> getPosts() {
         return posts;
     }
+
+    public Long getId(){
+        return id;
+    }
 }
