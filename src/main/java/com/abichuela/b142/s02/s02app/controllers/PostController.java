@@ -32,17 +32,17 @@ public class PostController {
         return new ResponseEntity<>(postService.getMyPost(userId), HttpStatus.OK);
     }
 
-    // Update an existing post
+    // Update an existing post by user
     @RequestMapping(value="/users/{userId}/posts/{postId}", method=RequestMethod.PUT)
     public ResponseEntity<Object> updatePost(@PathVariable Long userId, @PathVariable Long postId, @RequestBody Post updatedPost) {
         postService.updatePost(userId, postId, updatedPost);
         return new ResponseEntity<>("Post was updated.", HttpStatus.OK);
     }
 
-    // Delete an existing post
-    @RequestMapping(value="/posts/{id}", method=RequestMethod.DELETE)
-    public ResponseEntity<Object> deletePost(@PathVariable Long id) {
-        postService.deletePost(id);
+    // Delete an existing post by user
+    @RequestMapping(value="/posts/{postId}", method=RequestMethod.DELETE)
+    public ResponseEntity<Object> deletePost(@PathVariable Long postId) {
+        postService.deletePost(postId);
         return new ResponseEntity<>("Post was deleted.", HttpStatus.OK);
     }
 }
