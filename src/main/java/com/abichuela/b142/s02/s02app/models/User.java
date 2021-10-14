@@ -1,37 +1,47 @@
 package com.abichuela.b142.s02.s02app.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
-@Table(name = "users")
+@Table(name="users")
 public class User {
-
+    // Properties (columns)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Column(nullable = false, unique = true, length = 45)
+    @Column
     private String username;
-
-    @Column(nullable = false, length = 64)
+    @Column
     private String password;
+    @OneToMany(mappedBy = "user")
+    @JsonIgnore
+    private Set<Post> posts;
 
-    public User(){}
+    // Constructor
+    public User() {}
 
-    public User(String username, String password){
+    public User(String username, String password) {
         this.username = username;
+        this.password = password;
     }
+
+    // Getters & Setters
     public String getUsername() {
         return username;
     }
-    public String setUsername(String newUsername){
-        return this.username = username;
+
+    public void setUsername(String username) {
+        this.username = username;
     }
+
     public String getPassword() {
         return password;
     }
 
-    public void setPassword (String newPassword){
+    public void setPassword(String password) {
         this.password = password;
     }
 }

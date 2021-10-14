@@ -7,36 +7,43 @@ import javax.persistence.*;
 public class Post {
     // Properties (columns)
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id; // primary key
     @Column
     private String title;
     @Column
-    private  String content;
+    private String content;
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
     // Constructors
     public Post() {}
 
-    public Post(String title, String content){
+    public Post(String title, String content) {
         this.title = title;
         this.content = content;
     }
 
     // Getters & Setters
-    public String getTitle(){
+    public String getTitle() {
         return title;
     }
 
-    public String setTitle(String newTitle){
-       return this.title = title;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public  String getContent(){
+    public String getContent() {
         return content;
     }
 
-    public String setContent(String newContent){
-        return this.content = content;
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public void setUser(User author) {
+        this.user = author;
     }
 
     // Methods
