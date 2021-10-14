@@ -34,7 +34,12 @@ public class PostServiceImplementation implements PostService {
         postRepository.deleteById(id);
     }
 
-    public Iterable<Post> getPosts(Long userId) {
+    public Iterable<Post> getPosts() {
         return postRepository.findAll();
+    }
+
+    public Iterable<Post> getMyPost(Long userId) {
+        User author = userRepository.findById(userId).get();
+        return author.getPosts();
     }
 }

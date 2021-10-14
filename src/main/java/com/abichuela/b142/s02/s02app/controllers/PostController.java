@@ -21,9 +21,15 @@ public class PostController {
     }
 
     // Retrieve all posts
+    @RequestMapping(value = "/posts", method = RequestMethod.GET)
+    public ResponseEntity<Object> getPosts() {
+        return new ResponseEntity<>(postService.getPosts(), HttpStatus.OK);
+    }
+
+    // Retrieve all posts by an existing user
     @RequestMapping(value = "/users/{userId}/posts", method = RequestMethod.GET)
     public ResponseEntity<Object> getPosts(@PathVariable Long userId) {
-        return new ResponseEntity<>(postService.getPosts(userId), HttpStatus.OK);
+        return new ResponseEntity<>(postService.getMyPost(userId), HttpStatus.OK);
     }
 
     // Update an existing post

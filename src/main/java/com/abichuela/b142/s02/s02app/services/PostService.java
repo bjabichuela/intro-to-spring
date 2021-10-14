@@ -6,6 +6,7 @@ public interface PostService {
     void createPost(Post newPost, Long userId);
     void updatePost(Long id, Post updatedPost);
     void deletePost(Long id);
-    Iterable<Post> getPosts(Long userId);
+    Iterable<Post> getPosts();
+    Iterable<Post> getMyPost(Long userId);
 }
 

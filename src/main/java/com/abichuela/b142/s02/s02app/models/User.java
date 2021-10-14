@@ -44,4 +44,8 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public Set<Post> getPosts() {
+        return posts;
+    }
 }
