@@ -5,6 +5,8 @@ import com.abichuela.b142.s02.s02app.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class UserServiceImplementation implements UserService {
     @Autowired
@@ -26,5 +28,10 @@ public class UserServiceImplementation implements UserService {
 
     // Delete an existing user
     public void deleteUser(Long id) { userRepository.deleteById(id); }
+
+
+    public Optional<User> findByUserName(String username) {
+        return Optional.ofNullable(userRepository.findByUserName(username));
+    }
 }
 

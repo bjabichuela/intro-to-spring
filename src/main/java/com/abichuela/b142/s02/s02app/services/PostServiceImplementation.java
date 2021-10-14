@@ -32,8 +32,8 @@ public class PostServiceImplementation implements PostService {
         postRepository.save(existingPost);
     }
 
-    public void deletePost(Long id) {
-        postRepository.deleteById(id);
+    public void deletePost(Long postId) {
+        postRepository.deleteById(postId);
     }
 
     public Iterable<Post> getPosts() {
