@@ -33,9 +33,9 @@ public class PostController {
     }
 
     // Update an existing post
-    @RequestMapping(value="/posts/{id}", method=RequestMethod.PUT)
-    public ResponseEntity<Object> updatePost(@PathVariable Long id, @RequestBody Post updatedPost) {
-        postService.updatePost(id, updatedPost);
+    @RequestMapping(value="/users/{userId}/posts/{postId}", method=RequestMethod.PUT)
+    public ResponseEntity<Object> updatePost(@PathVariable Long userId, @PathVariable Long postId, @RequestBody Post updatedPost) {
+        postService.updatePost(userId, postId, updatedPost);
         return new ResponseEntity<>("Post was updated.", HttpStatus.OK);
     }
 

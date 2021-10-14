@@ -23,10 +23,12 @@ public class PostServiceImplementation implements PostService {
         postRepository.save(post);
     }
 
-    public void updatePost(Long id, Post updatedPost) {
-        Post existingPost = postRepository.findById(id).get();
+    public void updatePost(Long userId, Long postId, Post updatedPost) {
+        Post existingPost = postRepository.findById(postId).get();
         existingPost.setTitle(updatedPost.getTitle());
         existingPost.setContent(updatedPost.getContent());
+        User newAuthor = userRepository.findById(userId).get();
+        existingPost.setUser(newAuthor);
         postRepository.save(existingPost);
     }
 

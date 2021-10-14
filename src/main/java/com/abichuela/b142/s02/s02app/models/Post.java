@@ -42,6 +42,10 @@ public class Post {
         this.content = content;
     }
 
+    public User getUser() {
+        return user;
+    }
+
     public void setUser(User author) {
         this.user = author;
     }
