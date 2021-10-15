@@ -9,5 +9,5 @@ public interface UserService {
     void updateUser(Long id, User user);
     void deleteUser(Long id);
     Iterable<User> getUsers();
-    Optional<User> findByUserName(String username);
+    Optional<User> findByUsername(String username);
 }

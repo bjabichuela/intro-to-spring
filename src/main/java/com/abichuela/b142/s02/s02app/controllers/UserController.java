@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @RestController
 @CrossOrigin
 public class UserController {
@@ -38,5 +40,9 @@ public class UserController {
     public ResponseEntity<Object> deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
         return new ResponseEntity<>("User deleted successfully", HttpStatus.OK);
+    }
+
+    public ResponseEntity<Object> register(@RequestBody Map<String, String> body) {
+
     }
 }

@@ -30,8 +30,8 @@ public class UserServiceImplementation implements UserService {
     public void deleteUser(Long id) { userRepository.deleteById(id); }
 
 
-    public Optional<User> findByUserName(String username) {
-        return Optional.ofNullable(userRepository.findByUserName(username));
+    public Optional<User> findByUsername(String username) {
+        return Optional.ofNullable(userRepository.findByUsername(username));
     }
 }
 
