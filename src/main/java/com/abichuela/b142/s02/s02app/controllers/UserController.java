@@ -47,7 +47,7 @@ public class UserController {
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public ResponseEntity<Object> register(@RequestBody Map<String, String> body) throws UserException {
         String username = body.get("username");
-        if (userService.findByUsername(username).isEmpty()){
+        if (!userService.findByUsername(username).isEmpty()){
             throw new UserException("Username already exists.");
         } else {
             String password = body.get("password");

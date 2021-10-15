@@ -14,9 +14,9 @@ public class PostController {
     PostService postService;
 
     // Create a new post
-    @RequestMapping(value = "/users/{userId}/posts", method = RequestMethod.POST)
-    public ResponseEntity<Object> createPost(@RequestBody Post newPost, @PathVariable Long userId) {
-        postService.createPost(newPost, userId);
+    @RequestMapping(value = "/posts", method = RequestMethod.POST)
+    public ResponseEntity<Object> createPost(@RequestHeader(value = "Authorization") String token, @RequestBody Post newPost) {
+        postService.createPost(newPost, token);
         return new ResponseEntity<>("New post was created.", HttpStatus.CREATED);
     }
 
@@ -27,22 +27,20 @@ public class PostController {
     }
 
     // Retrieve all posts by an existing user
-    @RequestMapping(value = "/users/{userId}/posts", method = RequestMethod.GET)
-    public ResponseEntity<Object> getPosts(@PathVariable Long userId) {
-        return new ResponseEntity<>(postService.getMyPost(userId), HttpStatus.OK);
+    @RequestMapping(value = "/my-posts", method = RequestMethod.GET)
+    public ResponseEntity<Object> getMyPosts(@RequestHeader(value = "Authorization") String token) {
+        return new ResponseEntity<>(postService.getMyPost(token), HttpStatus.OK);
     }
 
-    // Update an existing post by user
-    @RequestMapping(value="/users/{userId}/posts/{postId}", method=RequestMethod.PUT)
-    public ResponseEntity<Object> updatePost(@PathVariable Long userId, @PathVariable Long postId, @RequestBody Post updatedPost) {
-        postService.updatePost(userId, postId, updatedPost);
-        return new ResponseEntity<>("Post was updated.", HttpStatus.OK);
+    // Update an existing post
+    @RequestMapping(value="/posts/{postId}", method=RequestMethod.PUT)
+    public ResponseEntity<Object> updatePost(@PathVariable Long postId, @RequestBody Post updatedPost, @RequestHeader(value = "Authorization") String token) {
+        return postService.updatePost(postId, updatedPost, token);
     }
 
-    // Delete an existing post by user
+    // Delete an existing post
     @RequestMapping(value="/posts/{postId}", method=RequestMethod.DELETE)
-    public ResponseEntity<Object> deletePost(@PathVariable Long postId) {
-        postService.deletePost(postId);
-        return new ResponseEntity<>("Post was deleted.", HttpStatus.OK);
+    public ResponseEntity<Object> deletePost(@PathVariable Long postId, @RequestHeader(value = "Authorization") String token) {
+        return postService.deletePost(postId, token);
     }
 }
